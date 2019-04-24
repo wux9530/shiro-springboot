@@ -19,7 +19,6 @@ import com.cicoding.config.properties.LinProperties;
 import com.cicoding.service.MenuService;
 import com.cicoding.service.NoticeService;
 import com.cicoding.utils.Userinfo;
-import com.google.gson.Gson;
 @Controller
 public class HomeController {
 
