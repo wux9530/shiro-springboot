@@ -19,7 +19,6 @@ import com.cicoding.constant.Constant;
 import com.cicoding.log.LogManager;
 import com.cicoding.log.LogTaskFactory;
 import com.cicoding.utils.LinTools;
-import com.cicoding.utils.MD5Util;
 import com.cicoding.utils.Userinfo;
 
 @Controller
@@ -71,7 +70,7 @@ public class LoginController {
 			return "error";
 		}
 
-		
+		log.info("用户登陆成功！");
 		LogManager.getInstance().saveLog(LogTaskFactory.getLoginSuccessTimerTask(Userinfo.getUser().getId(),
 				user.getUsername(), request.getRemoteHost()));
 		

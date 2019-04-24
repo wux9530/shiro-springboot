@@ -15,18 +15,26 @@ import org.springframework.context.annotation.Configuration;
 public class ShiroConfig {
 	/**
 	 * 安全管理器
+	 * 创建安全管理器对象,并关联自定义Realm
 	 * @param rememberMeManager
 	 * @return
 	 */
 	@Bean
 	public DefaultWebSecurityManager securityManager(CookieRememberMeManager rememberMeManager){
+		// 创建安全管理器对象
 		DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
+		// 绑定记住我
 		securityManager.setRememberMeManager(rememberMeManager);
+		// 绑定自定义的Realm
 		securityManager.setRealm(this.shiroDbRealm());
 		return securityManager;
 	}
 	
 	
+	/**
+	 * 获取自定义的Realm对象
+	 * @return
+	 */
 	@Bean
 	public ShiroDbRealm shiroDbRealm(){
 		return new ShiroDbRealm();
@@ -54,6 +62,11 @@ public class ShiroConfig {
 		return cookie;
 	}
 	
+	/**
+	 * 定义拦截规则
+	 * @param securityManager
+	 * @return
+	 */
 	@Bean
 	public ShiroFilterFactoryBean shiroFilter(DefaultWebSecurityManager securityManager){
 		ShiroFilterFactoryBean shiroFilter = new ShiroFilterFactoryBean();
